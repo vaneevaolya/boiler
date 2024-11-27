@@ -9,12 +9,17 @@ let app = express();
 console.log("Hello World")
 
 // Middlewares
-
 // Hojas de estilos
 app.use("/public", express.static(__dirname + "/public"));
 
 // Logger
+app.use((req, res, next) => {
+    const log = `${req.method} ${req.path} - ${req.ip}`;
 
+    console.log(log)
+
+    next()
+})
 
 // Rutas
 // Ruta de Home
@@ -27,12 +32,12 @@ app.get("/", (req, res) => {
 app.get("/json", (req, res) => {
     let responseMessage = "Hello json";
 
-    if (process.env.MESSAGE_STYLE === "uppercase"){
+    if (process.env.MESSAGE_STYLE === "uppercase") {
         responseMessage = responseMessage.toUpperCase();
     }
-    res.json({"message": responseMessage})
+    res.json({ "message": responseMessage })
 })
 
 
 
- module.exports = app;
+module.exports = app;
