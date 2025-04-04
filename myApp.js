@@ -1,8 +1,8 @@
 let express = require('express');
 let app = express();
 
-
-app(console.log('Hello World'))
+console.log('Hello World')
+app()
 
 
 
