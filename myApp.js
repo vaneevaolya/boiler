@@ -8,14 +8,6 @@ app.use('/', (req, res, next) => {
   next();
 })
 
-app.use('/json', (req, res) => {
-	let response = "Hello json";
-	if(process.env.MESSAGE_STYLE === 'uppercase') {
-		return res.json({message:response.toUpperCase()})
-	} else {
-  	return res.json({message:response})
-	}
-})
 
 
 
