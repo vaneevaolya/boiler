@@ -2,18 +2,13 @@ const express = require('express');
 const app = express();
 
 // Root-level request logger middleware
-app.use((req, res, next) => {
-  console.log(req.method + ' ' + req.path + ' - ' + req.ip);
+app.get('/now', (req, res, next) => {
+  req.time = new Date().toString();
   next();
-});
-
-app.get('/', (req, res) => {
-  res.send('ok');
-});
-
-app.listen(3000, () => {
-  console.log('listening');
-});
+}, 
+  (req, res) => {
+    res.send({time: req.time})
+  });
 
 
 
